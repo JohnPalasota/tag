@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class Game {
     private Date startTime;
     private Date endTime;
-    public Game(int maxInventory){
+
+    public Game(int maxInventory) {
         System.out.println("Ran the constructor, Maximum Inventory is " + maxInventory);
     }
 
-    public Game(int maxInventory, int playerAge){
+    public Game(int maxInventory, int playerAge) {
         this(maxInventory);
         System.out.println("The player's age is " + playerAge);
     }
@@ -32,7 +33,7 @@ public class Game {
     }
 
 
-    public void run()  {
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         this.setStartTime(new Date());
 
@@ -53,7 +54,8 @@ public class Game {
                 System.out.println("Goodbye.");
                 loop = false;
             } else {
-                System.out.println("Huh? I don't understand.");;
+                System.out.println("Huh? I don't understand.");
+                ;
             }
 
         }
