@@ -7,14 +7,7 @@ public class Game {
     private Date startTime;
     private Date endTime;
 
-    public Game(int maxInventory) {
-        System.out.println("Ran the constructor, Maximum Inventory is " + maxInventory);
-    }
 
-    public Game(int maxInventory, int playerAge) {
-        this(maxInventory);
-        System.out.println("The player's age is " + playerAge);
-    }
 
     public Date getStartTime() {
         return startTime;
