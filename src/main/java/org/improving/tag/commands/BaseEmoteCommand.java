@@ -14,7 +14,9 @@ public abstract class BaseEmoteCommand implements Command {
     }
     @Override //Tells java that we intend for it to do this.
     public boolean isValid(String input) {
-        return input.trim().equalsIgnoreCase(cmdText);
+
+        return (input == null ? "" : input)
+                .trim().equalsIgnoreCase(cmdText);
     }
 
     @Override
