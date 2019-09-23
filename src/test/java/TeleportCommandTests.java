@@ -19,7 +19,7 @@ public class TeleportCommandTests {
     @Test
     public void execute_should_return_phrase(){
         //Act
-        target.execute(null);
+        target.execute(null, null);
 
         //Assert
         assertEquals("You phase out of existence.", io.lastText);
@@ -28,7 +28,7 @@ public class TeleportCommandTests {
     @Test
     public void isValid_should_be_true_when_input_is_teleport(){
         //Act
-        var result = target.isValid( "teleport");
+        var result = target.isValid( "teleport", null);
 
         //Assert
         assertTrue(result);
@@ -38,7 +38,7 @@ public class TeleportCommandTests {
     @Test
     public void isValid_should_be_false_when_input_is_foobar(){
         //Act
-        var result = target.isValid( "foobar");
+        var result = target.isValid( "foobar", null);
 
         //Assert
         assertFalse(result);
@@ -46,7 +46,7 @@ public class TeleportCommandTests {
     @Test
     public void isValid_should_be_false_when_input_is_null(){
         //Act
-        var result = target.isValid( null);
+        var result = target.isValid( null, null);
 
         //Assert
         assertFalse(result);
@@ -54,7 +54,7 @@ public class TeleportCommandTests {
     @Test
     public void isValid_should_be_true_when_input_is_teleport_with_spaces(){
         //Act
-        var result = target.isValid( "    teleport ");
+        var result = target.isValid( "    teleport ", null);
 
         //Assert
         assertTrue(result);
@@ -64,7 +64,7 @@ public class TeleportCommandTests {
     @Test
     public void isValid_should_be_true_when_input_is_teleport_with_caps(){
         //Act
-        var result = target.isValid( "TElEpOrt");
+        var result = target.isValid( "TElEpOrt", null);
 
         //Assert
         assertTrue(result);

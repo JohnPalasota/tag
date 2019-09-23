@@ -1,6 +1,7 @@
 package org.improving.tag.commands;
 
 
+import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class CastCommand implements Command{
     public CastCommand(InputOutput io){this.io = io;}
 
     @Override
-    public boolean isValid(String input) {
+    public boolean isValid(String input, Game game) {
         if (input == null) return true;
         input.trim();
         var parts = input.split(" ");
@@ -32,7 +33,7 @@ public class CastCommand implements Command{
     }
 
     @Override
-    public void execute(String input) {
+    public void execute(String input, Game game) {
         var parts = input.split(" ");
         if(parts[1].equalsIgnoreCase("fireball") && fireball!=0){
         io.displayText("You cast fireball. Your opponent is engulfed in flames.");
