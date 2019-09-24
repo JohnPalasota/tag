@@ -24,20 +24,21 @@ public class SetNameCommandTests {
     }
 
     @Test
-    public void execute_should_display_all_words_but_Setname_John() {
-        Player player = new Player();
+    public void execute_should_Set_name() {
+        Player player = new Player(null);
         player.setName("hi");
         player.setHitPoints(50);
         player = spy(player);
-        when(game.getPlayer()).thenReturn(new Player());
+
+        when(game.getPlayer()).thenReturn(new Player(null));
+
         //Act
         target.execute("@set name=John", game);
 
         //Assert
-        verify(player).setName(anyString());
-        verify(game, times(2)).getPlayer();
+        verify(player).setName("John");
         assertEquals("Your name is now John.", io.lastText);
-        //
+
     }
 
     @Test
