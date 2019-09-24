@@ -1,5 +1,6 @@
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
+import org.improving.tag.Player;
 import org.improving.tag.commands.Command;
 import org.improving.tag.commands.MoveCommand;
 import org.improving.tag.commands.SetNameCommand;
@@ -8,11 +9,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.Mockito.*;
 
 public class SetNameCommandTests {
     SetNameCommand target;
     TestInputOutput io;
-    Game game = new Game(null, io);
+    Game game = mock(Game.class);
 
     @BeforeEach //Before you run each test, run this upcoming method.
     public void arrange() {
@@ -23,11 +25,17 @@ public class SetNameCommandTests {
 
     @Test
     public void execute_should_display_all_words_but_Setname_John() {
+        Player player = new Player();
+        player.setName("hi");
+        player.setHitPoints(50);
+        player = spy(player);
+        when(game.getPlayer()).thenReturn(new Player());
         //Act
         target.execute("@set name=John", game);
 
         //Assert
-
+        verify(player).setName(anyString());
+        verify(game, times(2)).getPlayer();
         assertEquals("Your name is now John.", io.lastText);
         //
     }
