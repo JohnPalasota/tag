@@ -14,12 +14,14 @@ public class Game {
     private InputOutput io;
     private Player p;
     private Location startingLocation;
+    private final SaveGameFactory saveFactory;
 
-    public Game(Command[] commands, InputOutput io) {
+    public Game(Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
         startingLocation = buildWorld();
         this.commands = commands;
         this.io = io;
         this.p = new Player(startingLocation);
+        this.saveFactory = saveFactory;
     }
 
     public Location getStartingLocation() {
@@ -58,6 +60,7 @@ public class Game {
             if (null != validCommand) {
                 validCommand.execute(input, this);
             } else if (input.equalsIgnoreCase("exit")) {
+                saveFactory.save(this);
                 io.displayText("Goodbye.");
                 loop = false;
             } else {
@@ -81,7 +84,7 @@ public class Game {
 
     private Location buildWorld(){
         var tdh = new Location();
-        tdh.setName("The Deathly Hollows");
+        tdh.setName("The Deathly Hallows");
 
         var td = new Location();
         td.setName("The Desert");
@@ -140,8 +143,11 @@ public class Game {
         tict.getExits().add(new Exit("Magic Portal", mtd, "magic portal", "magic", "portal"));
         tmcs.getExits().add(new Exit("Paradise Rd", reef, "paradise rd", "paradise", "rd", "paradise road", "road"));
         tmcs.getExits().add(new Exit("Highway 21", tvod, "highway 21", "hwy 21", "h21", "h 21"));
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ioc
 
         return tdh;
     }
