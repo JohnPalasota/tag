@@ -143,11 +143,6 @@ public class Game {
         tict.getExits().add(new Exit("Magic Portal", mtd, "magic portal", "magic", "portal"));
         tmcs.getExits().add(new Exit("Paradise Rd", reef, "paradise rd", "paradise", "rd", "paradise road", "road"));
         tmcs.getExits().add(new Exit("Highway 21", tvod, "highway 21", "hwy 21", "h21", "h 21"));
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ioc
 
         return tdh;
     }
