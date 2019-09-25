@@ -81,7 +81,7 @@ public class Game {
 
     private Location buildWorld(){
         var tdh = new Location();
-        tdh.setName("The Deathly Hollows");
+        tdh.setName("The Deathly Hallows");
 
         var td = new Location();
         td.setName("The Desert");
