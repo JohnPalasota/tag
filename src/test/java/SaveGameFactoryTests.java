@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 
+import java.io.IOException;
 import java.util.Dictionary;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -14,15 +16,15 @@ import static org.mockito.Mockito.*;
 public class SaveGameFactoryTests {
 
     @Test
-    public void save_should_preserve_location_name(){
+    public void save_should_preserve_location_name() throws IOException {
         //Arrange
         TestInputOutput io = new TestInputOutput();
-        Game g = new Game(null, io);
         FileSystemAdapter fsa = mock(FileSystemAdapter.class);
-        SaveGameFactory target = new SaveGameFactory(fsa);
-        Class<Dictionary<String, String>> dictClass =
-                (Class<Dictionary<String, String>>)(Class)Dictionary.class;
-        ArgumentCaptor<Dictionary<String, String>> contentsCaptor =
+        SaveGameFactory target = new SaveGameFactory(fsa, io);
+        Game g = new Game(null, io, target);
+        Class<Map<String, String>> dictClass =
+                (Class<Map<String, String>>)(Class)Map.class;
+        ArgumentCaptor<Map<String, String>> contentsCaptor =
                 ArgumentCaptor.forClass(dictClass);
         when(fsa.saveToFile(any())).thenReturn("this is dumb");
 
