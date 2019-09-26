@@ -54,9 +54,11 @@ public class Game {
 
     public void run() {
         this.setStartTime(new Date());
-
         boolean loop = true;
+
+
         while (loop) {
+
             io.displayPrompt("> ");
             String input = io.receiveInput();
             Command validCommand = getValidCommand(input);
