@@ -29,4 +29,19 @@ public class SaveGameFactory {
         }
         return path;
     }
+
+    public void load(String path, Game game) {
+        Map<String, String> saveContents;
+        try {
+            saveContents = fsa.loadFile(path);
+        } catch (IOException e) {
+            io.displayText(e.toString());
+            io.displayText("Failed to load File");
+            return;
+        }
+
+        Location lastKnownLocation = game.getLocationOf(saveContents.get("location"));
+        game.getPlayer().setLocation(lastKnownLocation);
+
+    }
 }
