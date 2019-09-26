@@ -18,6 +18,9 @@ public class Game {
     private Location startingLocation;
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
+    private Adversary sauron = new Adversary();
+
+
 
     public Game(Command[] commands, InputOutput io, SaveGameFactory saveFactory) {
         startingLocation = buildWorld();
@@ -91,6 +94,9 @@ public class Game {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
         this.locationList.add(tdh);
+        sauron.setHitPoints(100);
+        sauron.setName("Sauron");
+        tdh.setAdversary(sauron);
 
         var td = new Location();
         td.setName("The Desert");

@@ -1,5 +1,6 @@
 package org.improving.tag.commands;
 
+import org.improving.tag.Adversary;
 import org.improving.tag.Exit;
 import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
@@ -25,8 +26,11 @@ public class MoveCommand implements Command{
     public void execute(String input, Game game) {
         input = input.trim();
         var destination = input.substring(5);
-
         Exit exit = null;
+        if (game.getPlayer().getLocation().getAdversary() != null) {
+            io.displayText("YOU SHALL NOT PASS");
+            return;
+        }
         for( var e : game.getPlayer().getLocation().getExits()){
             if (e.getName().equalsIgnoreCase(destination)){
                 exit = e;
