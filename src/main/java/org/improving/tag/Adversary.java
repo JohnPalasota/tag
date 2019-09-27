@@ -30,7 +30,6 @@ public class Adversary {
 
     public void setDamageTaken(int damageTaken) {
         this.damageTaken = damageTaken;
-        hitPoints-=damageTaken;
     }
 
     public int getAttackDamage() {
