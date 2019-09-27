@@ -33,7 +33,7 @@ public class AttackCommand implements Command {
         if (random.nextInt(100)+1 <= 20){
             adv.setDamageTaken(adv.getDamageTaken() + 10);
             io.displayText( adv.getHitPoints() - adv.getDamageTaken() + "hp remaining for " +
-                    game.getPlayer().getLocation().getAdversary().getName());
+                    adv.getName());
         }
         else{
             io.displayText("Your attack missed.");
