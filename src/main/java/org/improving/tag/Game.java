@@ -72,16 +72,12 @@ public class Game {
                 Command validCommand = getValidCommand(input);
                 if (null != validCommand) {
                     validCommand.execute(input, this);
-//            } else if (input.equalsIgnoreCase("exit")) {
-//                saveFactory.save(this);
-//                io.displayText("Goodbye.");
-//                loop = false;
                 } else {
                     io.displayText("Huh? I don't understand.");
                 }
             }
 
-        }catch(IllegalStateException ex) {
+        } catch (IllegalStateException ex) {
             this.setEndTime(new Date());
 
         }
