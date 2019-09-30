@@ -7,7 +7,7 @@ import java.util.Scanner;
 @Component
 public class ConsoleInputOutput implements InputOutput {
     private final Scanner scanner;
-    
+
     public ConsoleInputOutput(Scanner scanner){
         this.scanner = scanner;
     }

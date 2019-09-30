@@ -6,26 +6,37 @@ import org.improving.tag.Game;
 import org.improving.tag.InputOutput;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Component
-public class MoveCommand implements Command{
+public class MoveCommand extends BaseAliasedCommand{
     private InputOutput io;
 
     public MoveCommand(InputOutput io){
+        super(io,"move","mov","mo","m","mve");
         this.io = io;
-    }
-    @Override
-    public boolean isValid(String input, Game game) {
-        if (input == null) return false;
-        input = input.trim();
-        var parts = input.split(" ");
-        if(parts.length == 1) return false;
-        return parts[0].equalsIgnoreCase("move");
     }
 
     @Override
-    public void execute(String input, Game game) {
+    public String getCommandPart(String input){
+        var parts = input.split(" ");
+        //if(parts.length == 1) return false;
+        return parts[0];
+
+    }
+
+    @Override
+    public String getErrorMessage(){
+        return "That route is unavailable.";
+    }
+
+
+    @Override
+    public void childExecute(String input, Game game) {
         input = input.trim();
-        var destination = input.substring(5);
+        var destination = input.substring(input.indexOf(" ")+1);
+
         Exit exit = null;
         if (game.getPlayer().getLocation().getAdversary() != null) {
             io.displayText("YOU SHALL NOT PASS");
@@ -45,10 +56,8 @@ public class MoveCommand implements Command{
             }
             if(exit != null) break;
         }
-        if (exit == null){
-            io.displayText("This route is unavailable.");
-            return;
-        }
+        if (exit == null){ throw new UnsupportedOperationException(); }
+
         game.getPlayer().setLocation(exit.getDestination());
         io.displayText("You travel " + exit.getName() + ".");
     }

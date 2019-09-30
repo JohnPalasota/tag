@@ -19,6 +19,7 @@ public class Game {
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
     private Adversary sauron = new Adversary();
+    public static boolean loop = true;
 
 
 
@@ -28,6 +29,8 @@ public class Game {
         this.io = io;
         this.p = new Player(startingLocation);
         this.saveFactory = saveFactory;
+
+
     }
 
     public Location getStartingLocation() {
@@ -57,7 +60,6 @@ public class Game {
 
     public void run() {
         this.setStartTime(new Date());
-        boolean loop = true;
 
 
         while (loop) {
@@ -67,10 +69,10 @@ public class Game {
             Command validCommand = getValidCommand(input);
             if (null != validCommand) {
                 validCommand.execute(input, this);
-            } else if (input.equalsIgnoreCase("exit")) {
-                saveFactory.save(this);
-                io.displayText("Goodbye.");
-                loop = false;
+//            } else if (input.equalsIgnoreCase("exit")) {
+//                saveFactory.save(this);
+//                io.displayText("Goodbye.");
+//                loop = false;
             } else {
                 io.displayText("Huh? I don't understand.");
             }
@@ -96,7 +98,7 @@ public class Game {
         this.locationList.add(tdh);
         sauron.setHitPoints(100);
         sauron.setName("Sauron");
-        tdh.setAdversary(sauron);
+
 
         var td = new Location();
         td.setName("The Desert");
@@ -125,6 +127,7 @@ public class Game {
         var mtd = new Location();
         mtd.setName("Mount Doom");
         this.locationList.add(mtd);
+        mtd.setAdversary(sauron);
 
         var tvod = new Location();
         tvod.setName("The Volcano of Death");
@@ -151,7 +154,7 @@ public class Game {
 
         tmcs.getExits().add(new Exit("Highway 121", ta, "121", "hwy", "highway 121", "h121"));
 
-        tvm.getExits().add(new Exit("The Pudding Slide", apt, "the pudding", "the slide", "pudding", "slide", "the pudding slide"));
+        tvm.getExits().add(new Exit("The Pudding Slide", apt, "the pudding", "the slide", "pudding", "slide", "the pudding slide", "pudding slide"));
 
         apt.getExits().add(new Exit("Flight 121", tmtn,  "flight 121", "flight121", "121"));
         apt.getExits().add(new Exit("Flight to the Mall", mall, "flight to the mall", "mall", "to mall", "flight mall"));
