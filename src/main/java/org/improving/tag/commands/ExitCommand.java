@@ -11,6 +11,7 @@ public class ExitCommand implements Command {
     InputOutput io;
     SaveGameFactory saveFactory;
 
+
     public ExitCommand(InputOutput io, SaveGameFactory saveFactory){
         this.io = io;
         this.saveFactory = saveFactory;
@@ -23,10 +24,10 @@ public class ExitCommand implements Command {
 
     @Override
     public void execute(String input, Game game) {
+        io.displayText("Goodbye.");
+        saveFactory.save(game);
 
-       io.displayText("Goodbye.");
-       saveFactory.save(game);
-       Game.loop = false;
+        throw new IllegalStateException();
 
 
 

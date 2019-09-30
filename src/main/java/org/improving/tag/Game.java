@@ -19,7 +19,7 @@ public class Game {
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
     private Adversary sauron = new Adversary();
-    public static boolean loop = true;
+
 
 
 
@@ -62,25 +62,29 @@ public class Game {
         this.setStartTime(new Date());
 
 
-        while (loop) {
+        try{
+            boolean loop = true;
+            while (loop) {
 
-            io.displayPrompt("> ");
-            String input = io.receiveInput();
-            Command validCommand = getValidCommand(input);
-            if (null != validCommand) {
-                validCommand.execute(input, this);
+
+                io.displayPrompt("> ");
+                String input = io.receiveInput();
+                Command validCommand = getValidCommand(input);
+                if (null != validCommand) {
+                    validCommand.execute(input, this);
 //            } else if (input.equalsIgnoreCase("exit")) {
 //                saveFactory.save(this);
 //                io.displayText("Goodbye.");
 //                loop = false;
-            } else {
-                io.displayText("Huh? I don't understand.");
+                } else {
+                    io.displayText("Huh? I don't understand.");
+                }
             }
 
+        }catch(IllegalStateException ex) {
+            this.setEndTime(new Date());
+
         }
-
-
-        this.setEndTime(new Date());
     }
 
     private Command getValidCommand(String input) {
