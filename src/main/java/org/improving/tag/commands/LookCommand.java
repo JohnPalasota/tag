@@ -19,7 +19,8 @@ public class LookCommand extends BaseAliasedCommand {
         var location = game.getPlayer().getLocation();
         io.displayText(location.getName());
         io.displayText(location.getDescription());
-        io.displayText("");
+        io.displayText(location.getTreasureDescription());
+        io.displayNewLine();
         io.displayText("Exits:");
 
         for (var exit: location.getExits()){
