@@ -61,9 +61,9 @@ public class Game {
     public void run() {
         this.setStartTime(new Date());
 
-
+        boolean loop = true;
         try{
-            boolean loop = true;
+
             while (loop) {
 
 
@@ -77,10 +77,12 @@ public class Game {
                 }
             }
 
-        } catch (IllegalStateException ex) {
-            this.setEndTime(new Date());
+        } catch (GameExitException ex) {
+            loop = false;
+
 
         }
+        this.setEndTime(new Date());
     }
 
     private Command getValidCommand(String input) {

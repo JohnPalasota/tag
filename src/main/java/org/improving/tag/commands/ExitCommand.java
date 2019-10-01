@@ -1,19 +1,15 @@
 package org.improving.tag.commands;
 
-import org.improving.tag.Exit;
-import org.improving.tag.Game;
-import org.improving.tag.InputOutput;
-import org.improving.tag.SaveGameFactory;
+import org.improving.tag.*;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExitCommand implements Command {
-    InputOutput io;
-    SaveGameFactory saveFactory;
+public class ExitCommand extends BaseAliasedCommand {
+    private final SaveGameFactory saveFactory;
 
 
     public ExitCommand(InputOutput io, SaveGameFactory saveFactory){
-        this.io = io;
+        super(io, "exit");
         this.saveFactory = saveFactory;
     }
 
@@ -23,11 +19,11 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public void execute(String input, Game game) {
+    public void childExecute(String input, Game game) {
         io.displayText("Goodbye.");
         saveFactory.save(game);
 
-        throw new IllegalStateException();
+        throw new GameExitException();
 
 
 
