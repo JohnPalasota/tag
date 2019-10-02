@@ -10,7 +10,7 @@ public class Adversary {
     private int damageTaken;
     private int attackDamage;
     private final Item item;
-    private static final Adversary NO_ADVERSARY = new Adversary("", 0, UniqueItems.NOTHING);
+
 
 
     public Adversary(String name, int hitPoints, Item item){
