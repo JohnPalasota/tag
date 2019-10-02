@@ -9,7 +9,13 @@ public class Exit{
     private Location destination;
     private List<String> aliases = new ArrayList<>();
 
+
     public Exit(){ }
+
+    public Exit(String name, Location destination){
+        this.name = name;
+        this.destination = destination;
+    }
 
     public Exit(String name, Location destination, String...aliases){
         this.name = name;
@@ -37,5 +43,21 @@ public class Exit{
     public List<String> getAliases() {
         return aliases;
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Exit) {
+            Exit exit = (Exit) obj;
+            return this.getName().equals(exit.getName()) &&
+                    this.getDestination().equals(exit.getDestination());
+        }
+        return super.equals(obj);
+    }
+
 
 }

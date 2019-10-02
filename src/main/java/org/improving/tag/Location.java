@@ -62,6 +62,14 @@ public class Location {
         return treasureChest.getDescription();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Location) {
+            Location location = (Location) obj;
+            return this.getName().equals(location.getName());
+        }
+        return super.equals(obj);
+    }
 
 }
 
