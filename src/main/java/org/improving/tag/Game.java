@@ -19,7 +19,8 @@ public class Game {
     private Location startingLocation;
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
-    private Adversary sauron = new Adversary();
+    private Adversary sauron = new Adversary("Sauron", 100, UniqueItems.NOTHING);
+    private Adversary rat = new Adversary("Rat", 10, UniqueItems.BLUE_SHELL);
 
 
 
@@ -99,8 +100,7 @@ public class Game {
         var tdh = new Location();
         tdh.setName("The Deathly Hallows");
         this.locationList.add(tdh);
-        sauron.setHitPoints(100);
-        sauron.setName("Sauron");
+        tdh.setAdversary(rat);
 
 
         var td = new Location();

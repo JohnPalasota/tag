@@ -14,7 +14,10 @@ public enum UniqueItems implements Item {
         this.description = description;
     }
 
-
+    @Override
+    public String autoLoot(){
+        return "The fallen monster has dropped: " + description;
+    }
 
     @Override
     public String toString(){
