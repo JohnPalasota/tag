@@ -20,7 +20,7 @@ public class Game {
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
     private Adversary sauron = new Adversary("Sauron", 100, UniqueItems.NOTHING);
-    private Adversary rat = new Adversary("Rat", 10, UniqueItems.BLUE_SHELL);
+    private Adversary rat = new Adversary("Rat", 20, UniqueItems.BLUE_SHELL);
 
 
 

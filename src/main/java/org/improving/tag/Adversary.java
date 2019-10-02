@@ -55,7 +55,4 @@ public class Adversary {
 
     }
 
-    public void killAdversary(Adversary adversary){
-
-    }
 }
