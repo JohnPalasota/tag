@@ -4,10 +4,8 @@ import org.improving.tag.commands.*;
 import org.improving.tag.items.UniqueItems;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Component
 public class Game {
@@ -20,7 +18,7 @@ public class Game {
     private List<Location> locationList = new ArrayList<>();
     private final SaveGameFactory saveFactory;
     private Adversary sauron = new Adversary("Sauron", 100, UniqueItems.NOTHING);
-    private Adversary rat = new Adversary("Rat", 20, UniqueItems.BLUE_SHELL);
+    private Adversary rat = new Adversary("Rat", 10, UniqueItems.BLUE_SHELL);
 
 
 
@@ -71,6 +69,7 @@ public class Game {
 
                 io.displayPrompt("> ");
                 String input = io.receiveInput();
+
                 Command validCommand = getValidCommand(input);
                 if (null != validCommand) {
                     validCommand.execute(input, this);
@@ -88,12 +87,14 @@ public class Game {
     }
 
     private Command getValidCommand(String input) {
-        for (Command command : commands) {
+
+        /*for (Command command : commands) {
             if (command.isValid(input, this)) {
                 return command;
             }
         }
-        return null;
+        return null;*/
+        return Stream.of(commands).filter(c -> c.isValid(input, this)).findFirst().orElse(null);
     }
 
     private Location buildWorld(){
