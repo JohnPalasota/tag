@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Exit{
+    private int destinationId;
     private String name;
     private Location destination;
     private List<String> aliases = new ArrayList<>();
@@ -44,6 +45,14 @@ public class Exit{
         return aliases;
     }
 
+    public int getDestinationId() {
+        return destinationId;
+    }
+
+    public void setDestinationId(int destinationId) {
+        this.destinationId = destinationId;
+    }
+
     @Override
     public String toString() {
         return this.getName();
@@ -57,6 +66,10 @@ public class Exit{
                     this.getDestination().equals(exit.getDestination());
         }
         return super.equals(obj);
+    }
+
+    public void setAliases(List<String> aliases) {
+        this.aliases = aliases;
     }
 
 

@@ -16,14 +16,11 @@ public class Game {
     private Player p;
     private Location startingLocation;
     private List<Location> locationList = new ArrayList<>();
-<<<<<<< HEAD
+
     private final SaveGameFactory saveFactory;
     private Adversary sauron = new Adversary("Sauron", 100, UniqueItems.NOTHING);
     private Adversary rat = new Adversary("Rat", 10, UniqueItems.BLUE_SHELL);
-=======
->>>>>>> attackAliased
 
-    private final SaveGameFactory saveFactory;
 
 
 

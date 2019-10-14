@@ -40,6 +40,7 @@ public class AttackCommand implements Command {
                 io.displayText("" + adv.getName() + " has been defeated!");
                 adv.dropItem(); //.autoLoot();
                 if (adv.dropItem() != UniqueItems.NOTHING){
+                    if (adv.getName() != null)
                     io.displayText("" + adv.dropItem().getName() + " has been dropped by " + adv.getName() + "!");
                 }
                 game.getPlayer().getInventory().addItem(adv.dropItem());

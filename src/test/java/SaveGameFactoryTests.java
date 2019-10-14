@@ -5,10 +5,8 @@ import org.improving.tag.WorldBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 
 import java.io.IOException;
-import java.util.Dictionary;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,7 +24,7 @@ public class SaveGameFactoryTests {
         io = new TestInputOutput();
         fsa = mock(FileSystemAdapter.class);
         target = new SaveGameFactory(fsa, io);
-        g = new Game(null, io, target, new WorldBuilder());
+        g = new Game(null, io, target, new WorldBuilder(null, null));
     }
 
     @Test
