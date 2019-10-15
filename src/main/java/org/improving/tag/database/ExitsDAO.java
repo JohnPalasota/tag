@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +31,8 @@ public class ExitsDAO {
                         String[] splitAliases = (getAliases.split(", "));
                         List<String> aliases = Arrays.asList(splitAliases);
                         exit.setAliases(aliases);
-
+                        //EntityManager em = JPAUtility.getEntityManager();
+                        //Exit exit = em.find(Exit.class, Long.parseLong(result.getString("Id")));
 
                         return exit;
                     });

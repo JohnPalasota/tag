@@ -27,7 +27,7 @@ public class WorldBuilder {
         try {
             List<Location> locations = locationDAO.findAll();
             for (var location : locations) {
-                List<Exit> exits = exitsDAO.findExitsByOriginId(location.getId());
+                List<Exit> exits = exitsDAO.findExitsByOriginId((location.getId()));
                 //
                 exits.forEach(( exit -> {
                     Location destination = locations.stream()
@@ -40,7 +40,7 @@ public class WorldBuilder {
             }
 
 
-            System.out.println(locations.size());
+            //System.out.println("Size of locations: " + locations.size());
             locationList = locations;
             return locationList.get(2);
         } catch (Exception e) {

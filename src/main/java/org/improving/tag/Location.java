@@ -1,18 +1,41 @@
 package org.improving.tag;
 
 import org.improving.tag.items.Item;
+import org.improving.tag.items.UniqueItems;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+@Entity( name = "location")
 public class Location {
+    @Id
     private int id;
+
+    @Column( name = "Name")
     private String name = "";
+
+    @Column( name = "Description")
     private String description = "";
+
+    @Transient
     private List<String> tags = new ArrayList<>();
+
+    @Transient
     private List<Exit> exits = new ArrayList<>();
+
+    @Transient
     private Adversary adversary;
+
+    @Transient
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
+
+    @Column (name = "AdversaryId")
+    private Long adversaryId;
+
+    @Column
+    private Long adversaryIdDb;
 
     public int getId() {
         return id;
@@ -79,6 +102,15 @@ public class Location {
         }
         return super.equals(obj);
     }
+
+    public Long getAdversaryIdDb() {
+        return adversaryIdDb;
+    }
+
+    public void setAdversaryIdDb(Long adversaryIdDb) {
+        this.adversaryIdDb = adversaryIdDb;
+    }
+
 
 }
 

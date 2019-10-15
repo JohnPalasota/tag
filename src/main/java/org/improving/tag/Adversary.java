@@ -11,8 +11,6 @@ public class Adversary {
     @Id
     long id;
 
-
-
     @Column( name = "Name")
     private String name;
 
