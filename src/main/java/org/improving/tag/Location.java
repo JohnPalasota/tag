@@ -22,17 +22,18 @@ public class Location {
     @Transient
     private List<String> tags = new ArrayList<>();
 
-    @Transient
+    @OneToMany( mappedBy = "origin")
     private List<Exit> exits = new ArrayList<>();
 
-    @Transient
+    @ManyToOne//(fetch = FetchType.EAGER)
+    @JoinColumn(name = "AdversaryId")
     private Adversary adversary;
 
     @Transient
     private TreasureChest treasureChest = TreasureChest.NO_TREASURE;
 
-    @Column (name = "AdversaryId")
-    private Long adversaryId;
+    /*@Column (name = "AdversaryId")
+    private Long adversaryId;*/
 
     @Column
     private Long adversaryIdDb;
@@ -103,13 +104,13 @@ public class Location {
         return super.equals(obj);
     }
 
-    public Long getAdversaryIdDb() {
+    /*public Long getAdversaryIdDb() {
         return adversaryIdDb;
     }
 
     public void setAdversaryIdDb(Long adversaryIdDb) {
         this.adversaryIdDb = adversaryIdDb;
-    }
+    }*/
 
 
 }

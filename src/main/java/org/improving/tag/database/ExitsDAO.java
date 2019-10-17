@@ -20,8 +20,11 @@ public class ExitsDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Exit> findExitsByOriginId(int id){
-        try {
+    public List<Exit> findExitsByOriginId(){
+        EntityManager em = JPAUtility.getEntityManager();
+        List<Exit> exits = em.createQuery("SELECT exit FROM org.improving.tag.Exit exit").getResultList();
+        return exits;
+       /* try {
             List<Exit> exits = jdbcTemplate.query("SELECT * FROM exits WHERE OriginId = " + id,
                     (result, rownum) -> {
                         Exit exit = new Exit();
@@ -40,7 +43,7 @@ public class ExitsDAO {
         } catch (DataAccessException e) {
             System.out.println("Exception in JDBC: " + e.getMessage());
             return null;
-        }
+        }*/
     }
 
 }

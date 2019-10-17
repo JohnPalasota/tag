@@ -21,17 +21,13 @@ public class LocationDAO {
 
     public List<Location> findAll() {
 
-            EntityManager em = JPAUtility.getEntityManager();
-                        List<Location> locations = em.createQuery("SELECT loc FROM org.improving.tag.Location loc").getResultList();
-                        for (var location : locations) {
-                            if (location.getAdversaryIdDb() != null){
-                                Adversary adversary = em.find(Adversary.class, location.getAdversaryIdDb());
-                                location.setAdversary(adversary);
-                            }
-                        };
+        EntityManager em = JPAUtility.getEntityManager();
+        List<Location> locations = em.createQuery("SELECT loc FROM org.improving.tag.Location loc").getResultList();
+
             return locations;
         }
     }
+
 
 
 

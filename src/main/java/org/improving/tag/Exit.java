@@ -1,32 +1,40 @@
 package org.improving.tag;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.improving.tag.database.ListOfStrings;
+
+import javax.persistence.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-
+@Entity( name = "exits")
 public class Exit{
 
+    @Id
     long id;
 
-
-    private int originId;
-
-
-    private int destinationId;
+    /*@Column( name = "Aliases")
+    private ListO aliasesDb;*/
 
 
+    @ManyToOne
+    @JoinColumn( name = "OriginId")
+    private Location origin;
+
+
+    //private int destinationId;
+
+    @Column( name = "Name")
     private String name;
 
-
+    @ManyToOne
+    @JoinColumn( name = "DestinationId")
     private Location destination;
 
-
-    private List<String> aliases = new ArrayList<>();
+    @Column (name = "Aliases")
+    private ListOfStrings aliases = new ListOfStrings();
 
 
     public Exit(){ }
@@ -63,13 +71,13 @@ public class Exit{
         return aliases;
     }
 
-    public int getDestinationId() {
-        return destinationId;
-    }
-
-    public void setDestinationId(int destinationId) {
-        this.destinationId = destinationId;
-    }
+//    public int getDestinationId() {
+//        return destinationId;
+//    }
+//
+//    public void setDestinationId(int destinationId) {
+//        this.destinationId = destinationId;
+//    }
 
     @Override
     public String toString() {
@@ -86,9 +94,12 @@ public class Exit{
         return super.equals(obj);
     }
 
-    public void setAliases(List<String> aliases) {
-        this.aliases = aliases;
-    }
 
+
+    @PostLoad
+    public void postLoad(){
+        System.out.println("Your aliases are " + aliases);
+
+    }
 
 }

@@ -23,17 +23,21 @@ public class Adversary {
     @Column( name = "AttackDamage")
     private int attackDamage;
 
-    @Column
-    private String dropItemDb;
+    /*@Column(name = "dropItemDb")
+    private String dropItemDb;*/
 
-    @Transient
-    private  Item item = UniqueItems.NOTHING;
+    @Column( name = "DropItem")
+    private  UniqueItems item ;
+
+    /*@Column( name = "ForExercise")
+    @Convert
+    private UniqueItems forExercise;*/
 
 
     public Adversary() {
     }
 
-    public Adversary(String name, int hitPoints, Item item){
+    public Adversary(String name, int hitPoints, UniqueItems item){
         this.name = name;
         this.hitPoints = hitPoints;
         this.item = item;
@@ -81,28 +85,22 @@ public class Adversary {
         return item;
     }
 
-    public void setItem(Item item) {
+    public void setItem(UniqueItems item) {
         this.item = item;
     }
 
-    public String getDropItemDb() {
+    /*public String getDropItemDb() {
         return dropItemDb;
     }
 
     public void setDropItemDb(String dropItemDb) {
         this.dropItemDb = dropItemDb;
-    }
+    }*/
 
     @PostLoad
     public void postLoad(){
-        if (null != dropItemDb) {
-            this.setItem(Arrays
-                    .stream(UniqueItems.values())
-                    .filter(item -> item.getName().equals(dropItemDb))
-                    .findFirst()
-                    .orElse(null)
-            );
+        System.out.println("item is " + item);
         }
     }
-}
+
 
